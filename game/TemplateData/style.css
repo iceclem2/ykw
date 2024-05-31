@@ -1,3 +1,4 @@
+/* Global styles */
 body {
   margin: 0;
   padding: 0;
@@ -6,11 +7,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   color: #fff;
 }
 
+/* Unity container styles */
 #unity-container {
   position: absolute;
 }
@@ -22,6 +24,10 @@ body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   overflow: hidden;
+  width: 80%;
+  max-width: 960px;
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 #unity-container.unity-mobile {
@@ -30,9 +36,12 @@ body {
   height: 100%;
 }
 
+/* Canvas styles */
 #unity-canvas {
   background: #231F20;
   border-radius: 10px;
+  width: 100%;
+  height: 100%;
 }
 
 .unity-mobile #unity-canvas {
@@ -40,6 +49,7 @@ body {
   height: 100%;
 }
 
+/* Loading bar styles */
 #unity-loading-bar {
   position: absolute;
   left: 50%;
@@ -52,17 +62,16 @@ body {
 }
 
 #unity-logo {
-  width: 154px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   background: url('unity-logo-dark.png') no-repeat center;
   background-size: contain;
 }
 
 #unity-progress-bar-empty {
-  width: 141px;
+  width: 70%;
   height: 18px;
   margin-top: 10px;
-  margin-left: 6.5px;
   background: url('progress-bar-empty-dark.png') no-repeat center;
   background-size: contain;
 }
@@ -76,6 +85,7 @@ body {
   transition: width 0.5s ease;
 }
 
+/* Footer styles */
 #unity-footer {
   position: relative;
   display: flex;
@@ -91,8 +101,8 @@ body {
 }
 
 #unity-webgl-logo {
-  width: 204px;
-  height: 38px;
+  width: 150px;
+  height: 28px;
   background: url('webgl-logo.png') no-repeat center;
   background-size: contain;
 }
@@ -110,6 +120,7 @@ body {
   background-size: contain;
 }
 
+/* Warning banner styles */
 #unity-warning {
   position: absolute;
   left: 50%;
@@ -123,7 +134,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-/* New styles for the button */
+/* Button styles */
 #top-right-button {
   position: absolute;
   top: 20px;
@@ -145,4 +156,37 @@ body {
 #top-right-button:active {
   background-color: #2C5A91;
   transform: scale(0.95);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  #unity-container.unity-desktop {
+    width: 90%;
+    height: auto;
+  }
+
+  #unity-logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  #unity-webgl-logo {
+    width: 120px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  #unity-container.unity-desktop {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+
+  #top-right-button {
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+  }
 }
