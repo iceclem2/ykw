@@ -190,3 +190,13 @@ body {
     font-size: 14px;
   }
 }
+
+/* Additional media query for very small screens */
+@media (max-width: 320px) {
+  #top-right-button {
+    top: 5px;
+    right: 5px;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
