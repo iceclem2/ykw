@@ -1,6 +1,6 @@
 body {
-  padding: 0;
   margin: 0;
+  padding: 0;
   font-family: 'Arial', sans-serif;
   background: linear-gradient(135deg, #f06, #4a90e2);
   display: flex;
@@ -8,21 +8,20 @@ body {
   align-items: center;
   height: 100vh;
   overflow: hidden;
+  color: #fff;
 }
 
 #unity-container {
   position: absolute;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  overflow: hidden;
 }
 
 #unity-container.unity-desktop {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 960px;
-  height: 600px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 #unity-container.unity-mobile {
@@ -48,6 +47,7 @@ body {
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -56,12 +56,13 @@ body {
   height: 130px;
   background: url('unity-logo-dark.png') no-repeat center;
   background-size: contain;
-  margin-bottom: 20px;
 }
 
 #unity-progress-bar-empty {
   width: 141px;
   height: 18px;
+  margin-top: 10px;
+  margin-left: 6.5px;
   background: url('progress-bar-empty-dark.png') no-repeat center;
   background-size: contain;
 }
@@ -69,9 +70,10 @@ body {
 #unity-progress-bar-full {
   width: 0%;
   height: 18px;
+  margin-top: 10px;
   background: url('progress-bar-full-dark.png') no-repeat center;
   background-size: contain;
-  transition: width 0.3s;
+  transition: width 0.5s ease;
 }
 
 #unity-footer {
@@ -80,7 +82,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -97,7 +99,6 @@ body {
 
 #unity-build-title {
   margin-right: 10px;
-  line-height: 38px;
   font-size: 18px;
 }
 
@@ -119,6 +120,29 @@ body {
   padding: 10px;
   border-radius: 5px;
   display: none;
-  z-index: 20;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* New styles for the button */
+#top-right-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#top-right-button:hover {
+  background-color: #357ABD;
+  transform: scale(1.05);
+}
+
+#top-right-button:active {
+  background-color: #2C5A91;
+  transform: scale(0.95);
 }
