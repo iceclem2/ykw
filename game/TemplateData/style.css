@@ -118,7 +118,7 @@ body {
   height: 19px;
   background: url('fullscreen-button.png') no-repeat center;
   background-size: contain;
-  margin-right: 10px; /* Spacing between buttons */
+  margin-right: 100px; /* Spacing between buttons */
 }
 
 /* Warning banner styles */
