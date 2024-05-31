@@ -1,92 +1,118 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Quiz Yo-Kai Watch</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <style>
-      /* Style pour la barre de navigation */
-      .navbar {
-        background-color: #333; /* Couleur de fond de la barre */
-        overflow: hidden;
-      }
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Unity WebGL Player | Quiz Yo-Kai Watch</title>
+  <link rel="shortcut icon" href="TemplateData/favicon.ico">
+  <link rel="stylesheet" href="TemplateData/style.css">
+  <style>
+    /* Style pour la barre de navigation */
+    .navbar {
+      overflow: hidden;
+      background-color: #333;
+    }
 
-      .navbar a {
-        float: left;
-        display: block;
-        color: white; /* Couleur du texte */
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-      }
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
 
-      .navbar a:hover {
-        background-color: #ddd; /* Couleur de fond au survol */
-        color: black; /* Couleur du texte au survol */
-      }
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
 
-      .navbar a.active {
-        background-color: #4CAF50; /* Couleur de fond pour l'élément actif */
-        color: white; /* Couleur du texte pour l'élément actif */
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Barre de navigation -->
-    <div class="navbar">
-      <a href="https://iceclem2.github.io/ykw" target="_blank">Accueil</a>
-      <a href="#" id="fullscreen-toggle">Plein écran</a>
+    .navbar a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<!-- Barre de navigation -->
+<div class="navbar">
+  <a href="https://iceclem2.github.io/ykw" target="_blank">Accueil</a>
+  <a href="#" onclick="toggleUnityFullscreen()">Plein écran</a>
+</div>
+<div id="unity-container" class="unity-desktop">
+  <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+  <div id="unity-loading-bar">
+    <div id="unity-logo"></div>
+    <div id="unity-progress-bar-empty">
+      <div id="unity-progress-bar-full"></div>
     </div>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
-        </div>
-      </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">Quiz Yo-Kai Watch</div>
-      </div>
-    </div>
-    <script>
-      // JavaScript pour gérer le plein écran
-      document.getElementById('fullscreen-toggle').addEventListener('click', function() {
-        var elem = document.documentElement;
-        var isFullscreen = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+  </div>
+  <div id="unity-warning"> </div>
+  <div id="unity-footer">
+    <div id="unity-webgl-logo"></div>
+    <div id="unity-fullscreen-button"></div>
+    <div id="unity-build-title">Quiz Yo-Kai Watch</div>
+  </div>
+</div>
+<script>
+  // JavaScript pour basculer le mode plein écran en utilisant le bouton Unity
+  function toggleUnityFullscreen() {
+    var unityInstance = UnityLoader.instances[0];
+    unityInstance.SetFullscreen(1); // Active le mode plein écran
+  }
+</script>
+<script>
+  // Configuration de UnityLoader
+  var buildUrl = "Build";
+  var loaderUrl = buildUrl + "/WEBGL.loader.js";
+  var config = {
+    dataUrl: buildUrl + "/WEBGL.data",
+    frameworkUrl: buildUrl + "/WEBGL.framework.js",
+    codeUrl: buildUrl + "/WEBGL.wasm",
+    streamingAssetsUrl: "StreamingAssets",
+    companyName: "DefaultCompany",
+    productName: "Quiz Yo-Kai Watch",
+    productVersion: "1.0",
+    showBanner: unityShowBanner,
+  };
 
-        if (!isFullscreen) {
-          if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-          } else if (elem.mozRequestFullScreen) { /* Firefox */
-            elem.mozRequestFullScreen();
-          } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-            elem.webkitRequestFullscreen();
-          } else if (elem.msRequestFullscreen) { /* IE/Edge */
-            elem.msRequestFullscreen();
-          }
-          document.getElementById('fullscreen-toggle').innerHTML = "Quitter plein écran";
-        } else {
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-          } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-          }
-          document.getElementById('fullscreen-toggle').innerHTML = "Plein écran";
-        }
-      });
-    </script>
-    <script>
-      // Votre script existant ici...
-    </script>
-  </body>
+  // Fonction d'affichage des messages d'avertissement ou d'erreur
+  function unityShowBanner(msg, type) {
+    var warningBanner = document.querySelector("#unity-warning");
+    var div = document.createElement('div');
+    div.innerHTML = msg;
+    warningBanner.appendChild(div);
+    if (type == 'error') div.style = 'background: red; padding: 10px;';
+    else {
+      if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+      setTimeout(function() {
+        warningBanner.removeChild(div);
+        updateBannerVisibility();
+      }, 5000);
+    }
+  }
+
+  // Chargement de l'instance Unity
+  var container = document.querySelector("#unity-container");
+  var canvas = document.querySelector("#unity-canvas");
+  var loadingBar = document.querySelector("#unity-loading-bar");
+  var progressBarFull = document.querySelector("#unity-progress-bar-full");
+
+  loadingBar.style.display = "block";
+
+  var script = document.createElement("script");
+  script.src = loaderUrl;
+  script.onload = () => {
+    createUnityInstance(canvas, config, (progress) => {
+      progressBarFull.style.width = 100 * progress + "%";
+    }).then((unityInstance) => {
+      loadingBar.style.display = "none";
+    }).catch((message) => {
+      alert(message);
+    });
+  };
+
+  document.body.appendChild(script);
+</script>
+</body>
 </html>
