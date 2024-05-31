@@ -1,146 +1,23 @@
-/* Global styles */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #f06, #4a90e2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  overflow: hidden;
-  color: #fff;
-}
-
-/* Unity container styles */
-#unity-container {
-  position: absolute;
-}
-
-#unity-container.unity-desktop {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  overflow: hidden;
-  width: 80%;
-  max-width: 960px;
-  height: auto;
-  aspect-ratio: 16 / 9;
-}
-
-#unity-container.unity-mobile {
-  position: fixed;
+/* Bandeau supérieur */
+#top-bar {
   width: 100%;
-  height: 100%;
-}
-
-/* Canvas styles */
-#unity-canvas {
-  background: #231F20;
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
-}
-
-.unity-mobile #unity-canvas {
-  width: 100%;
-  height: 100%;
-}
-
-/* Loading bar styles */
-#unity-loading-bar {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#unity-logo {
-  width: 100px;
-  height: 100px;
-  background: url('unity-logo-dark.png') no-repeat center;
-  background-size: contain;
-}
-
-#unity-progress-bar-empty {
-  width: 70%;
-  height: 18px;
-  margin-top: 10px;
-  background: url('progress-bar-empty-dark.png') no-repeat center;
-  background-size: contain;
-}
-
-#unity-progress-bar-full {
-  width: 0%;
-  height: 18px;
-  margin-top: 10px;
-  background: url('progress-bar-full-dark.png') no-repeat center;
-  background-size: contain;
-  transition: width 0.5s ease;
-}
-
-/* Footer styles */
-#unity-footer {
-  position: relative;
+  background-color: #333;
+  padding: 10px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.5);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Assurez-vous que le bandeau est au-dessus des autres éléments */
 }
 
-.unity-mobile #unity-footer {
-  display: none;
+#top-bar a, #top-bar div {
+  margin: 0 15px;
 }
 
-#unity-webgl-logo {
-  width: 150px;
-  height: 28px;
-  background: url('webgl-logo.png') no-repeat center;
-  background-size: contain;
-}
-
-#unity-build-title {
-  margin-right: 10px;
-  font-size: 18px;
-}
-
-#unity-fullscreen-button {
-  cursor: pointer;
-  width: 19px;
-  height: 19px;
-  background: url('fullscreen-button.png') no-repeat center;
-  background-size: contain;
-  margin-right: 100px; /* Spacing between buttons */
-}
-
-/* Warning banner styles */
-#unity-warning {
-  position: absolute;
-  left: 50%;
-  top: 5%;
-  transform: translate(-50%);
-  background: white;
-  color: black;
-  padding: 10px;
-  border-radius: 5px;
-  display: none;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Button styles */
-#top-right-button,
-#unity-fullscreen-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+/* Bouton Accueil */
+#top-right-button {
   padding: 10px 20px;
   background-color: #4a90e2;
   color: #fff;
@@ -150,19 +27,26 @@ body {
   transition: background-color 0.3s, transform 0.3s;
 }
 
-#top-right-button:hover,
-#unity-fullscreen-button:hover {
+#top-right-button:hover {
   background-color: #357ABD;
   transform: scale(1.05);
 }
 
-#top-right-button:active,
-#unity-fullscreen-button:active {
+#top-right-button:active {
   background-color: #2C5A91;
   transform: scale(0.95);
 }
 
-/* Media queries for responsiveness */
+/* Bouton Plein écran */
+#unity-fullscreen-button {
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
+  background: url('fullscreen-button.png') no-repeat center;
+  background-size: contain;
+}
+
+/* Styles supplémentaires pour la réactivité */
 @media (max-width: 768px) {
   #unity-container.unity-desktop {
     width: 90%;
@@ -187,31 +71,25 @@ body {
     border-radius: 0;
   }
 
-  #top-right-button,
-  #unity-fullscreen-button {
-    top: 10px;
-    right: 10px;
+  #top-right-button {
     padding: 5px 10px;
     font-size: 14px;
+  }
+
+  #unity-fullscreen-button {
+    width: 30px;
+    height: 30px;
   }
 }
 
 @media (max-width: 320px) {
-  #top-right-button,
-  #unity-fullscreen-button {
-    top: 5px;
-    right: 5px;
+  #top-right-button {
     padding: 4px 8px;
     font-size: 12px;
   }
 
-  #top-right-button {
-    margin-bottom: 5px; /* Space between buttons */
-  }
-
   #unity-fullscreen-button {
-    top: auto;
-    bottom: 5px;
-    right: 5px;
+    width: 25px;
+    height: 25px;
   }
 }
