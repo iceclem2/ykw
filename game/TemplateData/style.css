@@ -118,6 +118,7 @@ body {
   height: 38px;
   background: url('fullscreen-button.png') no-repeat center;
   background-size: contain;
+  margin-left: 10px; /* Spacing between buttons */
 }
 
 /* Warning banner styles */
@@ -135,7 +136,8 @@ body {
 }
 
 /* Button styles */
-#top-right-button {
+#top-right-button,
+#unity-fullscreen-button {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -148,12 +150,14 @@ body {
   transition: background-color 0.3s, transform 0.3s;
 }
 
-#top-right-button:hover {
+#top-right-button:hover,
+#unity-fullscreen-button:hover {
   background-color: #357ABD;
   transform: scale(1.05);
 }
 
-#top-right-button:active {
+#top-right-button:active,
+#unity-fullscreen-button:active {
   background-color: #2C5A91;
   transform: scale(0.95);
 }
@@ -183,7 +187,8 @@ body {
     border-radius: 0;
   }
 
-  #top-right-button {
+  #top-right-button,
+  #unity-fullscreen-button {
     top: 10px;
     right: 10px;
     padding: 5px 10px;
@@ -191,12 +196,22 @@ body {
   }
 }
 
-/* Additional media query for very small screens */
 @media (max-width: 320px) {
-  #top-right-button {
+  #top-right-button,
+  #unity-fullscreen-button {
     top: 5px;
     right: 5px;
     padding: 4px 8px;
     font-size: 12px;
+  }
+
+  #top-right-button {
+    margin-bottom: 5px; /* Space between buttons */
+  }
+
+  #unity-fullscreen-button {
+    top: auto;
+    bottom: 5px;
+    right: 5px;
   }
 }
